@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    // variables
+    public float moveSpeed = 5f;
 
-    private void Update()
+    private void Update() 
     {
+        // handles player movement
         var kb = Keyboard.current;
         if (kb == null) return;
 
