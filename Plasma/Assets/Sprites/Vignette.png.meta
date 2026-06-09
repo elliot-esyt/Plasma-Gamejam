@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 368a4130084ae0d4eb3cc6e96ab40cb3
+guid: f65f0221da486c543bca501da2a32a6b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4189851146262733418
-    second: Plasma sword_0
+      213: -2631856780022775825
+    second: Vignette_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,8 +49,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Plasma sword_0
+      name: Vignette_0
       rect:
         serializedVersion: 2
-        x: 223
-        y: 167
-        width: 45
-        height: 193
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 3840
+        height: 2160
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a62e0c23b67552a30800000000000000
-      internalID: 4189851146262733418
+      spriteID: feff907e334c97bd0800000000000000
+      internalID: -2631856780022775825
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Plasma sword_0: 4189851146262733418
+      Vignette_0: -2631856780022775825
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
