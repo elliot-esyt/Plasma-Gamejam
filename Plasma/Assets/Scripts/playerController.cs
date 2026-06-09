@@ -5,6 +5,19 @@ public class PlayerController : MonoBehaviour
 {
     // variables
     public float moveSpeed = 5f;
+    private Vector2 screenBounds;
+    private float playerHalfWidth;
+    private float playerHalfHeight;
+
+    private void Start() {
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+
+        playerHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
+        print(playerHalfWidth); 
+        
+        playerHalfHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+        print(playerHalfHeight); 
+    }
 
     private void Update() 
     {
@@ -20,5 +33,16 @@ public class PlayerController : MonoBehaviour
         if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) move.x -= 1;
 
         transform.Translate(move.normalized * moveSpeed * Time.deltaTime);
+
+
+        float clampedX = Mathf.Clamp(transform.position.x, -screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
+        Vector2 posx = transform.position;
+        posx.x = clampedX;
+        transform.position = posx;
+
+        float clampedY = Mathf.Clamp(transform.position.y, -screenBounds.y + playerHalfHeight, screenBounds.y - playerHalfHeight);
+        Vector2 posy = transform.position;
+        posy.y = clampedY;
+        transform.position = posy;
     }
 }
