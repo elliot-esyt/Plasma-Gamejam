@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     private float moveSpeed;
     private float currentHealth;
     private float damage;
+    private float damageCooldown = 0.5f;
+    private float damageTimer = 0f;
     private Transform player;
 
     private void Start()
@@ -30,6 +32,8 @@ public class Enemy : MonoBehaviour
         if (player == null) return;
         Vector3 dir = (player.position - transform.position).normalized;
         transform.Translate(dir * moveSpeed * Time.deltaTime, Space.World);
+
+        if (damageTimer > 0f) damageTimer -= Time.deltaTime;
     }
 
     public void TakeDamage(float amount)
@@ -37,19 +41,19 @@ public class Enemy : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            WaveManager wm = FindObjectOfType<WaveManager>();
+            WaveManager wm = FindAnyObjectByType<WaveManager>();
             if (wm != null) wm.EnemyKilled();
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Damage attemtpeda");
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && damageTimer <= 0f)
         {
             PlayerHealth ph = other.GetComponent<PlayerHealth>();
             if (ph != null) ph.TakeDamage(damage);
+            damageTimer = damageCooldown;
         }
     }
 }

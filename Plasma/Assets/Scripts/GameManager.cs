@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    private int wavesCompleted = 0;
-    public WaveManager waveManager;
+    
+    [SerializeField] private int wavesCompleted = 0;
+    private WaveManager waveManager;
+    private PlayerHealth playerHealth;
 
     private void Awake()
     {
@@ -16,13 +17,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        waveManager = FindObjectOfType<WaveManager>();
+        waveManager = FindAnyObjectByType<WaveManager>();
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
         waveManager.StartWave(1);
     }
 
     public void WaveComplete()
     {
         wavesCompleted++;
+        if (playerHealth != null) playerHealth.HealFull();
         if (wavesCompleted % 10 == 0)
             OpenShop();
         else
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     private void OpenShop()
     {
-        Debug.Log("shop opened, waves completed: " + wavesCompleted);
+        Debug.Log("Shop opened! Waves completed: " + wavesCompleted);
     }
 
     public void GameOver()
