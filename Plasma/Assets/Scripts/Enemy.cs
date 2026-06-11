@@ -41,6 +41,16 @@ public class Enemy : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+            int ppReward = 0;
+            switch (enemyType)
+            {
+                case EnemyType.Light:  ppReward = 2;  break;
+                case EnemyType.Normal: ppReward = 5;  break;
+                case EnemyType.Tank:   ppReward = 12; break;
+                case EnemyType.Boss:   ppReward = 30; break;
+            }
+            GameManager.Instance.AddPP(ppReward);
+
             WaveManager wm = FindAnyObjectByType<WaveManager>();
             if (wm != null) wm.EnemyKilled();
             Destroy(gameObject);

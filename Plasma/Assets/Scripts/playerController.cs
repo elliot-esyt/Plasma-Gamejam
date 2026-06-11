@@ -3,25 +3,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // variables
     public float moveSpeed = 5f;
     private Vector2 screenBounds;
     private float playerHalfWidth;
     private float playerHalfHeight;
 
-    private void Start() {
+    private void Start()
+    {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-
         playerHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
-        print(playerHalfWidth); 
-        
         playerHalfHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
-        print(playerHalfHeight); 
+        GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
 
-    private void Update() 
+    private void Update()
     {
-        // handles player movement
         var kb = Keyboard.current;
         if (kb == null) return;
 
@@ -33,7 +29,6 @@ public class PlayerController : MonoBehaviour
         if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) move.x -= 1;
 
         transform.Translate(move.normalized * moveSpeed * Time.deltaTime);
-
 
         float clampedX = Mathf.Clamp(transform.position.x, -screenBounds.x + playerHalfWidth, screenBounds.x - playerHalfWidth);
         Vector2 posx = transform.position;

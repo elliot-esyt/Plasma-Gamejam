@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
-    [SerializeField] private int wavesCompleted = 0;
+
+    private int wavesCompleted = 0;
+    private int currentWave = 1;
+    private int playerPP = 0;
     private WaveManager waveManager;
     private PlayerHealth playerHealth;
 
@@ -34,12 +36,14 @@ public class GameManager : MonoBehaviour
 
     private void StartNextWave()
     {
-        waveManager.StartWave(wavesCompleted + 1);
+        currentWave = wavesCompleted + 1;
+        waveManager.StartWave(currentWave);
     }
 
     public void CloseShop()
     {
-        waveManager.StartWave(wavesCompleted + 1);
+        currentWave = wavesCompleted + 1;
+        waveManager.StartWave(currentWave);
     }
 
     private void OpenShop()
@@ -52,5 +56,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void AddPP(int amount)
+    {
+        playerPP += amount;
+    }
+
+    public int GetPP() => playerPP;
     public int GetWavesCompleted() => wavesCompleted;
+    public int GetCurrentWave() => currentWave;
 }
