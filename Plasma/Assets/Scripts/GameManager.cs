@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+
+    // variables
+    public static GameManager Instance; // makes sure theres only one
 
     private int wavesCompleted = 0;
     private int currentWave = 1;
@@ -11,52 +13,52 @@ public class GameManager : MonoBehaviour
     private WaveManager waveManager;
     private PlayerHealth playerHealth;
 
-    private void Awake()
+    private void Awake() 
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null) Instance = this; // make sure theres only one of these fellas
         else Destroy(gameObject);
     }
 
     private void Start()
     {
-        waveManager = FindAnyObjectByType<WaveManager>();
+        waveManager = FindAnyObjectByType<WaveManager>(); // looks for the managers
         playerHealth = FindAnyObjectByType<PlayerHealth>();
         waveManager.StartWave(1);
     }
 
-    public void WaveComplete()
+    public void WaveComplete() // when wave complies
     {
-        wavesCompleted++;
-        if (playerHealth != null) playerHealth.HealFull();
+        wavesCompleted++; // add one to wave 
+        if (playerHealth != null) playerHealth.HealFull(); // heal to fyull hp
         if (wavesCompleted % 10 == 0)
-            OpenShop();
+            OpenShop(); // openms shop at 10 wave intervals
         else
-            Invoke(nameof(StartNextWave), 3f);
+            Invoke(nameof(StartNextWave), 3f); 
     }
 
-    private void StartNextWave()
+    private void StartNextWave() // go to next way, increase counter
     {
         currentWave = wavesCompleted + 1;
         waveManager.StartWave(currentWave);
     }
 
-    public void CloseShop()
+    public void CloseShop() // bye bye shop
     {
         currentWave = wavesCompleted + 1;
         waveManager.StartWave(currentWave);
     }
 
-    private void OpenShop()
+    private void OpenShop() // need to do, currently debug log
     {
         Debug.Log("Shop opened! Waves completed: " + wavesCompleted);
     }
 
-    public void GameOver()
+    public void GameOver() // restart 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void AddPP(int amount)
+    public void AddPP(int amount) // add money 
     {
         playerPP += amount;
     }

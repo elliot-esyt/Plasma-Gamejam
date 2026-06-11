@@ -4,6 +4,7 @@ public enum EnemyType { Light, Normal, Tank, Boss }
 
 public class Enemy : MonoBehaviour
 {
+    // variables
     [SerializeField] public EnemyType enemyType;
 
     private float moveSpeed;
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        switch (enemyType)
+        switch (enemyType) // switch statement setting enemy stats
         {
             case EnemyType.Light:  moveSpeed = 4f;   currentHealth = 2f;  damage = 1f; break;
             case EnemyType.Normal: moveSpeed = 3f;   currentHealth = 5f;  damage = 2f; break;
@@ -23,25 +24,25 @@ public class Enemy : MonoBehaviour
             case EnemyType.Boss:   moveSpeed = 1f;   currentHealth = 50f; damage = 5f; break;
         }
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) player = playerObj.transform;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player"); // find the player
+        if (playerObj != null) player = playerObj.transform; // and their transform
     }
 
     private void Update()
     {
-        if (player == null) return;
-        Vector3 dir = (player.position - transform.position).normalized;
-        transform.Translate(dir * moveSpeed * Time.deltaTime, Space.World);
+        if (player == null) return; // if the player doesnt exist dont do anything
+        Vector3 dir = (player.position - transform.position).normalized; // get their position and where theyre going
+        transform.Translate(dir * moveSpeed * Time.deltaTime, Space.World); // go that way
 
-        if (damageTimer > 0f) damageTimer -= Time.deltaTime;
+        if (damageTimer > 0f) damageTimer -= Time.deltaTime; // stops no damage
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount) // handles damage taken
     {
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            int ppReward = 0;
+            int ppReward = 0; // handles giving cash
             switch (enemyType)
             {
                 case EnemyType.Light:  ppReward = 2;  break;
@@ -49,7 +50,7 @@ public class Enemy : MonoBehaviour
                 case EnemyType.Tank:   ppReward = 12; break;
                 case EnemyType.Boss:   ppReward = 30; break;
             }
-            GameManager.Instance.AddPP(ppReward);
+            GameManager.Instance.AddPP(ppReward); // adds
 
             WaveManager wm = FindAnyObjectByType<WaveManager>();
             if (wm != null) wm.EnemyKilled();
@@ -57,7 +58,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other) // handles taking damage
     {
         if (other.CompareTag("Player") && damageTimer <= 0f)
         {

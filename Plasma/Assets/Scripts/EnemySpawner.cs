@@ -1,3 +1,6 @@
+// UNUSED SCRIPT - THIS WOULD SPAWN IN EMEIES BUT NOW IT DOENST BECAUSE ITS NOT NEEDED OK BTYE
+// -------------------------------------------------
+
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour

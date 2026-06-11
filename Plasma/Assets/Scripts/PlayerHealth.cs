@@ -3,32 +3,33 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // variables
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float currentHealth;
     private SpriteRenderer sr;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; // on the start set their current hp to the max hp
         sr = GetComponent<SpriteRenderer>();
-        if (sr == null) sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr == null) sr = GetComponentInChildren<SpriteRenderer>(); 
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount) // take damage
     {
-        currentHealth -= amount;
-        Debug.Log("taken damage, new hp:" + currentHealth);
-        if (sr != null) StartCoroutine(DamageFlash());
-        if (currentHealth <= 0)
-            GameManager.Instance.GameOver();
+        currentHealth -= amount; // remove damage from their health 
+        Debug.Log("taken damage, new hp:" + currentHealth); // wait this is usefull
+        if (sr != null) StartCoroutine(DamageFlash()); // set it red rq 
+        if (currentHealth <= 0) // game over! heh... bye bye!
+            GameManager.Instance.GameOver(); // kill player if hp = 0
     }
 
-    public void HealFull()
+    public void HealFull() // heal full on wave complete
     {
         currentHealth = maxHealth;
     }
 
-    private IEnumerator DamageFlash()
+    private IEnumerator DamageFlash() // set red
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(0.15f);

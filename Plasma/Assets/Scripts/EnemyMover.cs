@@ -1,3 +1,5 @@
+// UNUSED SCRIPT - USED TO MOVE ENEMIES DOESNT ANYMORE ITS NOT ANYWHERE DONT LOOK FOR IT ITS NOT THERE
+// -------------------------------------------------
 using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
