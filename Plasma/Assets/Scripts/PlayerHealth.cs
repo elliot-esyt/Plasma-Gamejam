@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float amount) // take damage
     {
         currentHealth -= amount; // remove damage from their health 
-        Debug.Log("taken damage, new hp:" + currentHealth); // wait this is usefull
+        // Debug.Log("taken damage, new hp:" + currentHealth); // wait this is usefull
         CameraShakeManager.instance.CameraShake(impulseSource); // shake the camera
         if (sr != null) StartCoroutine(DamageFlash()); // set it red rq 
         if (currentHealth <= 0) // game over! heh... bye bye!
@@ -34,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
     public void HealFull() // heal full on wave complete
     {
         currentHealth = maxHealth;
+        // currentHealth++;
     }
 
     private IEnumerator DamageFlash() // set red

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private WaveManager waveManager;
     private PlayerHealth playerHealth;
 
+
     private void Awake() 
     {
         if (Instance == null) Instance = this; // make sure theres only one of these fellas
