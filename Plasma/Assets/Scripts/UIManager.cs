@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,12 +8,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform healthSlider;
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private TMP_Text ppText;
+    [SerializeField] private Image weaponSlot1;
+    [SerializeField] private Image weaponSlot2;
+    [SerializeField] private Image weaponSlot3;
 
     private PlayerHealth playerHealth;
+    private WeaponManager weaponManager;
+
+    private Color selectedColor = Color.white;
+    private Color unselectedColor = new Color(0.35f, 0.35f, 0.35f, 1f);
 
     private void Start()
     {
         playerHealth = FindAnyObjectByType<PlayerHealth>();
+        weaponManager = FindAnyObjectByType<WeaponManager>();
     }
 
     private void Update()
@@ -30,5 +39,13 @@ public class UIManager : MonoBehaviour
 
         if (ppText != null) // if the ppText EXISTS
             ppText.text = GameManager.Instance.GetPP().ToString(); // set it ok thank
+
+        if (weaponManager != null)
+        {
+            WeaponType current = weaponManager.GetCurrentWeapon();
+            if (weaponSlot1 != null) weaponSlot1.color = current == WeaponType.Gun           ? selectedColor : unselectedColor;
+            if (weaponSlot2 != null) weaponSlot2.color = current == WeaponType.Sword         ? selectedColor : unselectedColor;
+            if (weaponSlot3 != null) weaponSlot3.color = current == WeaponType.ElectricStaff ? selectedColor : unselectedColor;
+        }
     }
 }
