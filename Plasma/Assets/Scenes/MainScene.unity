@@ -1047,8 +1047,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 103.099976, y: 5.0004883}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 99.46561, y: 5.0004883}
+  m_SizeDelta: {x: 22.1364, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &593569554
 MonoBehaviour:
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1576955839573267976, guid: e62b29fc5b6bc1947916d42d6638719b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2621,7 +2621,7 @@ MonoBehaviour:
   weaponSpriteRenderer: {fileID: 453441061}
   gunSprite: {fileID: -1945584689051879131, guid: 495caca2f066a6a49a6d92ad0c85f97c, type: 3}
   swordSprite: {fileID: 4189851146262733418, guid: 368a4130084ae0d4eb3cc6e96ab40cb3, type: 3}
-  staffSprite: {fileID: 6905116961478994977, guid: a3711dc3f331222488d943d0c36c2cbe, type: 3}
+  staffSprite: {fileID: 1576955839573267976, guid: e62b29fc5b6bc1947916d42d6638719b, type: 3}
   weaponAngleOffset: 30
   swordSpinSpeed: 300
 --- !u!1 &2024590793

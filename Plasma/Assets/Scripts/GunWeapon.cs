@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GunWeapon : MonoBehaviour
 {
+    // variables
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed = 12f;
 
@@ -11,15 +12,15 @@ public class GunWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (cooldown > 0f) cooldown -= Time.deltaTime;
+        if (cooldown > 0f) cooldown -= Time.deltaTime; // cooldown
     }
 
-    public void TryAttack(Vector2 direction)
+    public void TryAttack(Vector2 direction) // attacking
     {
-        if (cooldown > 0f || bulletPrefab == null) return;
-        cooldown = fireRate;
-        GameObject b = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Bullet bullet = b.GetComponent<Bullet>();
-        if (bullet != null) bullet.Init(direction, bulletSpeed, damage);
+        if (cooldown > 0f || bulletPrefab == null) return; // checks cooldown
+        cooldown = fireRate; // start coodlwon
+        GameObject b = Instantiate(bulletPrefab, transform.position, Quaternion.identity); // create a bullet
+        Bullet bullet = b.GetComponent<Bullet>(); // get the bullet script
+        if (bullet != null) bullet.Init(direction, bulletSpeed, damage); // if bullet exists, initiallise it
     }
 }

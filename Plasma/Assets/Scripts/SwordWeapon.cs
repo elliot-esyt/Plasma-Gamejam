@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SwordWeapon : MonoBehaviour
 {
+
+    // variables
     public float damage = 5f;
     public float radius = 2f;
     public float attackRate = 0.3f;
@@ -9,25 +11,19 @@ public class SwordWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (cooldown > 0f) cooldown -= Time.deltaTime;
+        if (cooldown > 0f) cooldown -= Time.deltaTime; // cooldown management
     }
 
-    public void TryAttack()
+    public void TryAttack() // atckcing
     {
-        if (cooldown > 0f) return;
+        if (cooldown > 0f) return; // cooldown 
         cooldown = attackRate;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
-        foreach (Collider2D hit in hits)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius); // detect objects in a circle
+        foreach (Collider2D hit in hits) // for each one hit
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy != null) enemy.TakeDamage(damage);
+            Enemy enemy = hit.GetComponent<Enemy>();// check for enemy
+            if (enemy != null) enemy.TakeDamage(damage); // if its an enemy take damage
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
