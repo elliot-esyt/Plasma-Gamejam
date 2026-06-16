@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1.58, y: -1.89}
+  m_EffectDistance: {x: 1.5, y: -1.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &446703
 MonoBehaviour:
@@ -1729,6 +1729,7 @@ GameObject:
   - component: {fileID: 1038704453}
   - component: {fileID: 1038704455}
   - component: {fileID: 1038704454}
+  - component: {fileID: 1038704456}
   m_Layer: 5
   m_Name: PPLogo
   m_TagString: Untagged
@@ -1793,6 +1794,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038704452}
   m_CullTransparentMesh: 1
+--- !u!114 &1038704456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038704452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1147363580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,6 +2352,7 @@ GameObject:
   - component: {fileID: 1441797778}
   - component: {fileID: 1441797780}
   - component: {fileID: 1441797779}
+  - component: {fileID: 1441797781}
   m_Layer: 5
   m_Name: HearImage
   m_TagString: Untagged
@@ -2400,6 +2417,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441797777}
   m_CullTransparentMesh: 1
+--- !u!114 &1441797781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441797777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Shadow
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 0.2, y: -0.2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1491450486
 GameObject:
   m_ObjectHideFlags: 0
