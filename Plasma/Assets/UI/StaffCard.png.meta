@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7ae581d05dd1bb440971b5dc87047501
+guid: 0ee907abd86feb1469b43709bf32ebe2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5974748962252900737
-    second: Silver_Coin(PP)_0
+      213: 537628617492405422
+    second: StaffCard_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Silver_Coin(PP)_0
+      name: StaffCard_0
       rect:
         serializedVersion: 2
-        x: 195
-        y: 234
-        width: 82
-        height: 91
+        x: 5
+        y: 0
+        width: 251
+        height: 251
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7638c2797d651da0800000000000000
-      internalID: -5974748962252900737
+      spriteID: eac18be016a067700800000000000000
+      internalID: 537628617492405422
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Silver_Coin(PP)_0: -5974748962252900737
+      StaffCard_0: 537628617492405422
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
