@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class ElectricStaffWeapon : MonoBehaviour
 {
-
     // variables
     public float damage = 3f;
     public int chainCount = 1;
@@ -14,10 +13,10 @@ public class ElectricStaffWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (cooldown > 0f) cooldown -= Time.deltaTime; // cooldown
+        if (cooldown > 0f) cooldown -= Time.deltaTime; // cooldwn 
     }
 
-    public Vector2 TryAttack()  
+    public Vector2 TryAttack() 
     {
         if (cooldown > 0f) return Vector2.zero; // check cooldown
         cooldown = attackRate;
@@ -25,11 +24,11 @@ public class ElectricStaffWeapon : MonoBehaviour
         Enemy[] allEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None); // find all enemies
         if (allEnemies.Length == 0) return Vector2.zero; // if no enemies dont do anything 
 
-        Enemy nearest = null; 
+        Enemy nearest = null;
         float nearestDist = float.MaxValue;
         foreach (Enemy e in allEnemies) // loop for all enemies 
         {
-            float dist = Vector2.Distance(transform.position, e.transform.position); // calculate distance from player
+            float dist = Vector2.Distance(transform.position, e.transform.position); // calculate distance from player 
             if (dist < nearestDist) // calcs nearest enemy
             {
                 nearestDist = dist;
@@ -37,9 +36,11 @@ public class ElectricStaffWeapon : MonoBehaviour
             }
         }
 
-        if (nearest == null) return Vector2.zero; // if no enemies dont do anything 
+        if (nearest == null) return Vector2.zero; // if no enemies dont do anything
 
-        List<Enemy> hitList = new List<Enemy>(); 
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayStaffUse();
+
+        List<Enemy> hitList = new List<Enemy>();
         List<Vector3> linePoints = new List<Vector3>(); // creates list of enemies to make the line
 
         hitList.Add(nearest); // adds the first target 
@@ -59,7 +60,7 @@ public class ElectricStaffWeapon : MonoBehaviour
             {
                 if (e == null || hitList.Contains(e)) continue; // skips if it doesnt exist or is hit
                 float dist = Vector2.Distance(lastPos, e.transform.position); // checks range
-                if (dist < chainRange && dist < nextDist)  // checks closest target
+                if (dist < chainRange && dist < nextDist) // checks closest target
                 {
                     nextDist = dist;
                     next = e;

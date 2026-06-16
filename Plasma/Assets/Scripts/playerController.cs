@@ -14,8 +14,19 @@ public class PlayerController : MonoBehaviour
     {
         // sets boundaries to the screen size
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        playerHalfWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
-        playerHalfHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+
+        CapsuleCollider2D cap = GetComponent<CapsuleCollider2D>();
+        if (cap != null)
+        {
+            playerHalfWidth  = cap.bounds.extents.x;
+            playerHalfHeight = cap.bounds.extents.y;
+        }
+        else
+        {
+            playerHalfWidth  = GetComponent<SpriteRenderer>().bounds.extents.x;
+            playerHalfHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+        }
+
         GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
 

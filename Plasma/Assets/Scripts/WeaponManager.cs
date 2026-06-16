@@ -5,7 +5,7 @@ public enum WeaponType { Gun, Sword, ElectricStaff }
 
 public class WeaponManager : MonoBehaviour
 {
-    // varialbes
+    // variables
     [SerializeField] private GunWeapon gun;
     [SerializeField] private SwordWeapon sword;
     [SerializeField] private ElectricStaffWeapon staff;
@@ -21,6 +21,7 @@ public class WeaponManager : MonoBehaviour
     private Camera cam;
     private float swordSpinAngle = 0f;
     private Vector3 defaultWeaponLocalPos;
+    private bool swordWasHeld = false;
 
     private void Start() 
     {
@@ -40,11 +41,13 @@ public class WeaponManager : MonoBehaviour
         if (kb.digit2Key.wasPressedThisFrame) EquipWeapon(WeaponType.Sword);
         if (kb.digit3Key.wasPressedThisFrame) EquipWeapon(WeaponType.ElectricStaff);
 
-        if (mouse.leftButton.isPressed) // if left click 
+        bool mouseHeld = mouse.leftButton.isPressed; // if left click 
+
+        if (mouseHeld)
         {
             switch (currentWeapon) // switch case handling the wewapon for 123
             {
-                case WeaponType.Gun: 
+                case WeaponType.Gun:
                     Vector2 mouseWorld = cam.ScreenToWorldPoint(mouse.position.ReadValue()); // gets the mouse screen position into world position
                     Vector2 fireDir = (mouseWorld - (Vector2)transform.position).normalized; // finds direction
                     SnapWeaponToDir(fireDir); // points it there
@@ -52,38 +55,59 @@ public class WeaponManager : MonoBehaviour
                     break;
 
                 case WeaponType.Sword:
-                    swordSpinAngle += swordSpinSpeed * Time.deltaTime; // increaes rotation
-                    if (weaponPivot != null) 
-                        weaponPivot.rotation = Quaternion.Euler(0f, 0f, swordSpinAngle); // rotates sword
+                    if (!swordWasHeld && AudioManager.Instance != null) 
+                        AudioManager.Instance.StartSwordLoop();
+                    swordSpinAngle += swordSpinSpeed * Time.deltaTime; 
+                    if (weaponPivot != null)
+                        weaponPivot.rotation = Quaternion.Euler(0f, 0f, swordSpinAngle);
                     sword.TryAttack(); // attacks using sword script
                     break;
 
                 case WeaponType.ElectricStaff:
-                    Vector2 staffDir = staff.TryAttack(); // direction to enemy hit
-                    if (staffDir != Vector2.zero) SnapWeaponToDir(staffDir);  // rotate stuaff , refreences SnapWeaponToDir
+                    Vector2 staffDir = staff.TryAttack();  // direction to enemy hit
+                    if (staffDir != Vector2.zero) SnapWeaponToDir(staffDir); // rotate stuaff , refreences SnapWeaponToDir
                     break;
             }
+        }
+
+        if (currentWeapon == WeaponType.Sword)
+        {
+            if (!mouseHeld && swordWasHeld && AudioManager.Instance != null)
+                AudioManager.Instance.StopSwordLoop();
+            swordWasHeld = mouseHeld;
+        }
+        else
+        {
+            if (swordWasHeld && AudioManager.Instance != null)
+                AudioManager.Instance.StopSwordLoop();
+            swordWasHeld = false;
         }
     }
 
     private void SnapWeaponToDir(Vector2 dir) // ok hi we are at SnapWeaponToDir
     {
-        if (weaponPivot == null) return; 
+        if (weaponPivot == null) return;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + weaponAngleOffset; // calculate angle 
         weaponPivot.rotation = Quaternion.Euler(0f, 0f, angle); // rotates 
-        if (weaponSpriteRenderer != null) 
+        if (weaponSpriteRenderer != null)
             weaponSpriteRenderer.flipY = dir.x < 0f; // flip sprite if it needs to be flipped
     }
 
-    private void EquipWeapon(WeaponType type) 
+    private void EquipWeapon(WeaponType type)
     {
-        currentWeapon = type; // store weapon 
+        if (currentWeapon == WeaponType.Sword && type != WeaponType.Sword)
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.StopSwordLoop();
+            swordWasHeld = false;
+        }
 
-        if (weaponSpriteRenderer != null) 
+        currentWeapon = type;
+
+        if (weaponSpriteRenderer != null)
         {
             weaponSpriteRenderer.transform.localPosition = type == WeaponType.Sword // position adjustment depending on weapon 
                 ? Vector3.zero
-                : defaultWeaponLocalPos; 
+                : defaultWeaponLocalPos;
 
             switch (type) // handles sprite changing 
             {
@@ -94,5 +118,5 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public WeaponType GetCurrentWeapon() => currentWeapon; // returns the equpped weapon
+    public WeaponType GetCurrentWeapon() => currentWeapon;
 }

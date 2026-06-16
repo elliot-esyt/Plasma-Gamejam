@@ -40,6 +40,9 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount) // handles damage taken
     {
         currentHealth -= amount;
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayEnemyDamage(enemyType);
+
         if (currentHealth <= 0)
         {
             int ppReward = 0; // handles giving cash

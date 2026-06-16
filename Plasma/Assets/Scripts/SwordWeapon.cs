@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class SwordWeapon : MonoBehaviour
 {
-
     // variables
-    public float damage = 5f;
+    public float damage = 2f;
     public float radius = 2f;
     public float attackRate = 0.3f;
     private float cooldown = 0f;

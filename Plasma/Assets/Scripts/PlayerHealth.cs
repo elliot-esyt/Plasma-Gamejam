@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 
-
 public class PlayerHealth : MonoBehaviour
 {
     // variables
@@ -11,24 +10,30 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer sr;
     private CinemachineImpulseSource impulseSource;
 
-
     private void Start()
     {
         currentHealth = maxHealth; // on the start set their current hp to the max hp
         sr = GetComponent<SpriteRenderer>();
-        if (sr == null) sr = GetComponentInChildren<SpriteRenderer>(); 
+        if (sr == null) sr = GetComponentInChildren<SpriteRenderer>();
 
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     public void TakeDamage(float amount) // take damage
     {
-        currentHealth -= amount; // remove damage from their health 
+        currentHealth -= amount; // remove damage from their health
         // Debug.Log("taken damage, new hp:" + currentHealth); // wait this is usefull
         CameraShakeManager.instance.CameraShake(impulseSource); // shake the camera
-        if (sr != null) StartCoroutine(DamageFlash()); // set it red rq 
+        if (sr != null) StartCoroutine(DamageFlash()); // set it red rq
         if (currentHealth <= 0) // game over! heh... bye bye!
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayPlayerDeath();
             GameManager.Instance.GameOver(); // kill player if hp = 0
+        }
+        else
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayPlayerDamage();
+        }
     }
 
     public void HealFull() // heal full on wave complete
