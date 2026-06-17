@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     // variables
     public static GameManager Instance; // makes sure theres only one
 
-    private int wavesCompleted = 0;
-    private int currentWave = 1;
+    [SerializeField] private int wavesCompleted = 0;
+    [SerializeField] private int currentWave = 1;
     private int playerPP = 0;
     private WaveManager waveManager;
     private PlayerHealth playerHealth;

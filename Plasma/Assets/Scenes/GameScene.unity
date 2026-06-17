@@ -2653,6 +2653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f02ca82c8dc8634493bc8447eebb676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  wavesCompleted: 0
+  currentWave: 1
   gunDamage: 1
   gunFireRate: 0.15
   swordDamage: 2
@@ -3020,19 +3022,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5db2371e941e14582dc64470c79fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  gunShootClip: {fileID: 0}
-  swordLoopClip: {fileID: 0}
-  staffUseClip: {fileID: 0}
-  playerDamageClip: {fileID: 0}
-  playerDeathClip: {fileID: 0}
-  lightEnemyDamageClip: {fileID: 0}
-  normalEnemyDamageClip: {fileID: 0}
-  tankEnemyDamageClip: {fileID: 0}
-  bossEnemyDamageClip: {fileID: 0}
-  buttonClickClip: {fileID: 0}
-  buyClip: {fileID: 0}
-  waveClearClip: {fileID: 0}
-  sfxVolume: 1
+  gunShootClip: {fileID: 8300000, guid: b5f387c0466daba418829c0a94210111, type: 3}
+  swordLoopClip: {fileID: 8300000, guid: 2ea4ec54b604fcd40bd3e72998d856a0, type: 3}
+  staffUseClip: {fileID: 8300000, guid: 6a549f677985d054786c8412ed372768, type: 3}
+  playerDamageClip: {fileID: 8300000, guid: ff7a012659cde2447adb556225cc85d5, type: 3}
+  playerDeathClip: {fileID: 8300000, guid: ff3f36dcab7e7894a9aae3fd4c733e69, type: 3}
+  lightEnemyDamageClip: {fileID: 8300000, guid: 053961a5c15706a4f90f3a5db2fd3717, type: 3}
+  normalEnemyDamageClip: {fileID: 8300000, guid: 69275fa6256a9ae40b52f1ac699c35f9, type: 3}
+  tankEnemyDamageClip: {fileID: 8300000, guid: 58108ca24c05ebf4389ca9a752c1afeb, type: 3}
+  bossEnemyDamageClip: {fileID: 8300000, guid: 1d6b36e4736564445b1fba462f97408b, type: 3}
+  buttonClickClip: {fileID: 8300000, guid: 76e1542b983d8fa46b52ee5e10213ff5, type: 3}
+  buyClip: {fileID: 8300000, guid: b41d65782072cb64abcddfe0f0bddb98, type: 3}
+  waveClearClip: {fileID: 8300000, guid: 3ecb900303d459b47a6a0deb8f674ca1, type: 3}
+  sfxVolume: 0.6
 --- !u!1 &2014103473
 GameObject:
   m_ObjectHideFlags: 0
